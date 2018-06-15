@@ -1,0 +1,9 @@
+--- 
+apiVersion: openebs.io/v1alpha1
+kind: StoragePoolClaim
+metadata: 
+  name: pool1
+spec: 
+  type: openebs-cstor
+  maxPools: 3
+  capacity: 5G

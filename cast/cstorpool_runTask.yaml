@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cstor-pool-create-put-cr-0.6.0
+  namespace: default
+data:
+  meta: |
+    runNamespace: default
+    apiVersion: openebs.io/v1alpha1
+    kind: CStorPool
+    action: put
+    queries:
+      - alias: objectName
+  task: |
+    apiVersion: openebs.io/v1alpha1
+    kind: CStorPool
+    metadata:
+      name: pool1test
+    spec:
+      disks:
+        diskList: ["disk1"]
