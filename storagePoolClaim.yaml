@@ -10,8 +10,8 @@ spec:
   # path: "value"
   type: openebs-cstor
   nodeSelector: ["node1", "node2", "node3"]
-  maxPools: 3
-  capacity: 5G
+  maxPools: "3"
+  capacity: "5G"
   poolSpec:
     poolName: cstorpool1
     poolType: striped
