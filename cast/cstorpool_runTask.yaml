@@ -5,7 +5,7 @@ metadata:
   namespace: default
 data:
   meta: |
-    runNamespace: default
+    runNamespace: {{ .Volume.runNamespace }}
     apiVersion: openebs.io/v1alpha1
     kind: CStorPool
     action: put
@@ -15,7 +15,12 @@ data:
     apiVersion: openebs.io/v1alpha1
     kind: CStorPool
     metadata:
-      name: pool1test
+      name: {{.CstorPool.owner}}
+      labels:
+        cas.openebs.io/storage-pool-claim: {{.CstorPool.spc}}
+        kubernetes.io/hostname: {{.CstorPool.hostName}}
     spec:
       disks:
         diskList: ["disk1"]
+      poolSpec:
+        poolType: {{.CstorPool.poolType}}

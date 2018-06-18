@@ -3,6 +3,17 @@ apiVersion: openebs.io/v1alpha1
 kind: StoragePoolClaim
 metadata:
   name: pool1
+  # Cluster Scoped? Do we need Namespace?
+  # This way of setting namespace will get first priority.
+  # namespace: default
+  annotations:
+    # This the CASTemplate which will be used to provision cstor pool.
+    cas.openebs.io/create-template: cast-standard-cstorpool-0.6.0
+  # labels:
+    # Cluster Scoped? Do we need Namespace?
+    # This manner of setting namespace gets the second priority.
+    # namespace: default
+
 spec:
   name: pool1
   # format: "value"
@@ -13,8 +24,9 @@ spec:
   maxPools: "3"
   capacity: "5G"
   poolSpec:
-    poolName: cstorpool1
+    # poolName: cstorpool1
     poolType: striped
     # cacheFile: "value"
-  disks:
-    diskList: ["disk1", "disk2", "disk3"]
+  # Do we need to provide disk list in spc yaml? I guess no.
+  # disks:
+   # diskList: ["disk1", "disk2", "disk3"]
