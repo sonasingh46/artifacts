@@ -17,7 +17,7 @@ metadata:
   namespace: default
   name: openebs-ndm-operator
 rules:
-- apiGroups: ["disks.openebs.io"]
+- apiGroups: ["*"]
   resources: ["disks"]
   verbs: ["*"]
 ---
@@ -79,6 +79,7 @@ spec:
       # kubectl label node <node-name> "openebs.io/nodegroup"="storage-node"
       #nodeSelector:
       #  "openebs.io/nodegroup": "storage-node"
+      serviveAccount: openebs-ndm-operator
       hostNetwork: true
       containers:
       - name: node-disk-manager
