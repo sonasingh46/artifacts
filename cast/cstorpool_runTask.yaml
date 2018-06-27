@@ -5,12 +5,13 @@ metadata:
   namespace: default
 data:
   meta: |
+    id: createputcstorpool
     runNamespace: {{ .Volume.runNamespace }}
     apiVersion: openebs.io/v1alpha1
     kind: CStorPool
     action: put
-    queries:
-      - alias: objectName
+  post: |
+    {{- jsonpath .JsonResult "{.metadata.name}" | trim | saveAs "createputcstorpool.objectName" .TaskResult | noop -}}
   task: |
     apiVersion: openebs.io/v1alpha1
     kind: CStorPool
