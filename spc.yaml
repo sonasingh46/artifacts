@@ -1,0 +1,20 @@
+---
+apiVersion: openebs.io/v1alpha1
+kind: StoragePoolClaim
+metadata:
+  name: pool1
+spec:
+  name: pool1
+  # format: "value"
+  # mountpoint: "value"
+  # path: "value"
+  type: openebs-cstor
+  nodeSelector: ["node1", "node2", "node3"]
+  maxPools: 3
+  capacity: 5G
+  poolSpec:
+    poolName: cstorpool1
+    poolType: striped
+    # cacheFile: "value"
+  disks:
+    diskList: ["disk1", "disk2", "disk3"]

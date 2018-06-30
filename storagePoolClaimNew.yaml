@@ -1,0 +1,15 @@
+---
+apiVersion: openebs.io/v1alpha1
+kind: StoragePoolClaim
+metadata:
+  name: pool1
+  annotations:
+    cas.openebs.io/create-template: cast-standard-cstorpool-0.6.0
+spec:
+  name: pool1
+  type: openebs-cstor
+  maxPools: "1"
+  poolSpec:
+    poolType: striped
+  disks:
+    diskList: ["disk-66a4d7bb2f5e7b9b8dc191b6e70e757f", "disk-a2b93c4ad9c253f3d10ba1f5cf67acd5", "disk-a85d9ceee7f182d03fded326703d3d8f","disk-fbb19aa12f332c8b69baadb8626f6df8"]
