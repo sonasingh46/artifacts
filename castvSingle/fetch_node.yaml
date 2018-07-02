@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cstor-pool-create-list-node-0.6.0
+  namespace: default
+data:
+  meta: |
+    id: nodedisklist
+    runNamespace: default
+    apiVersion: openebs.io/v1alpha1
+    kind: Disk
+    objectName: {{ .TaskResult.cstorpoollistdisk.disk }}
+    action: get
+    retry: "10,30s"
+  post: |
+    {{- jsonpath .JsonResult `{.metadata.labels.kubernetes\.io/hostname}` | trim | saveAs "nodedisklist.hostname" .TaskResult | noop -}}
+    {{- jsonpath .JsonResult `{.metadata.name}` | trim | saveAs "nodedisklist.name" .TaskResult | noop -}}
+---

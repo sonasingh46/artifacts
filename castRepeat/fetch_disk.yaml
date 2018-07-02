@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cstor-pool-create-list-disk-0.6.0
+  namespace: default
+data:
+  meta: |
+    id: cstorpoollistdisk
+    runNamespace: {{ .Volume.runNamespace }}
+    apiVersion: openebs.io/v1alpha1
+    kind: StoragePoolClaim
+    objectName: {{.CstorPool.spc}}
+    action: get
+    retry: "10,30s"
+  post: |
+    {{- jsonpath .JsonResult "{.spec.disks.diskList}" | trim | trimAll "[" | trimAll "]"| replace " " "," | saveAs "cstorpoollistdisk.disk" .TaskResult | noop -}}

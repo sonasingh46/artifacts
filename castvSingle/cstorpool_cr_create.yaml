@@ -12,6 +12,7 @@ data:
     action: put
   post: |
     {{- jsonpath .JsonResult "{.metadata.name}" | trim | saveAs "createputcstorpool.objectName" .TaskResult | noop -}}
+    {{- jsonpath .JsonResult "{.metadata.uid}" | trim | saveAs "createputcstorpool.uid" .TaskResult | noop -}}
   task: |
     apiVersion: openebs.io/v1alpha1
     kind: CStorPool
@@ -19,9 +20,9 @@ data:
       name: {{.CstorPool.owner}}
       labels:
         cas.openebs.io/storage-pool-claim: {{.CstorPool.spc}}
-        kubernetes.io/hostname: {{.CstorPool.hostName}}
+        kubernetes.io/hostname: {{ .TaskResult.nodedisklist.hostname }}
     spec:
       disks:
-        diskList: ["disk1"]
+        diskList: [ {{.TaskResult.nodedisklist.name}} ]
       poolSpec:
         poolType: {{.CstorPool.poolType}}
