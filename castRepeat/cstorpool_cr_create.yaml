@@ -30,4 +30,4 @@ data:
       disks:
         diskList: {{ pluck .ListItems.currentRepeatResource .ListItems.cstorNodePoolList.nodes }}
       poolSpec:
-        cacheFile: {{.TaskResult.cstorpoollistdisk.disk}}
+        poolType: {{.CstorPool.poolType}}
