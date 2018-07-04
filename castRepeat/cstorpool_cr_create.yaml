@@ -16,8 +16,9 @@ data:
         - {{ $k }}
         {{- end }}
   post: |
-    {{- jsonpath .JsonResult "{.metadata.name}" | trim | saveAs "createputcstorpool.objectName" .TaskResult | noop -}}
-    {{- jsonpath .JsonResult "{.metadata.uid}" | trim | saveAs "createputcstorpool.uid" .TaskResult | noop -}}
+    {{- jsonpath .JsonResult `{.metadata.name}` | trim | saveAs "createputcstorpool.objectName" .TaskResult | noop -}}
+    {{- $nodeUidMap := jsonpath .JsonResult `pkey=nodesUid {.metadata.labels.kubernetes\.io/hostname}={.metadata.uid};` | trim | default "" | splitList ";" -}}
+    {{- $nodeUidMap | asKeyMap "cstorNodeUidList" .ListItems | noop -}}
   task: |
     apiVersion: openebs.io/v1alpha1
     kind: CStorPool
