@@ -11,9 +11,15 @@ spec:
   maxPools: "1"
   poolSpec:
     poolType: striped
+    cacheFile: /tmp/pool1.cache
+    overProvisioning: false
   disks:
     diskList:
-      - disk-66a4d7bb2f5e7b9b8dc191b6e70e757f
-      - disk-a2b93c4ad9c253f3d10ba1f5cf67acd5
+      - disk-b017994ee0218160deb8586947eb85d6
+      - disk-b536b046bded6a4d4038223cec5509fd
       - disk-a85d9ceee7f182d03fded326703d3d8f
-      - disk-fbb19aa12f332c8b69baadb8626f6df8
+      - disk-66a4d7bb2f5e7b9b8dc191b6e70e757f
+      - disk-160f8450ad7e7930821aa9a2774cb8c3
+      - disk-16f1c51e0d22b5404d012ecb9a61f465
+
+
