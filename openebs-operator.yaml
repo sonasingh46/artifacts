@@ -196,7 +196,7 @@ spec:
       serviceAccountName: openebs-maya-operator
       containers:
       - name: openebs-maya-apiserver
-        image: sonasingh46/m-apiserver:d244abe3eb6d
+        image: sonasingh46/m-apiserver:2c4a191f32c5
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5656
