@@ -91,8 +91,14 @@ data:
       - objectName: {{$v}}
       {{ end }}
   post: |
+    {{if eq .TaskResult.getspcinfo.type "disk"}}
     {{- $nodesList := jsonpath .JsonResult `pkey=nodes,{@.metadata.labels.kubernetes\.io/hostname}={@.spec.devlinks[0].links[1]};` | trim | default "" | splitList ";" -}}
     {{- $nodesList | keyMap "cstorNodePoolList" .ListItems | noop -}}
+    {{end}}
+    {{if eq .TaskResult.getspcinfo.type "sparse"}}
+    {{- $nodesList := jsonpath .JsonResult `pkey=nodes,{@.metadata.labels.kubernetes\.io/hostname}={@.spec.path};` | trim | default "" | splitList ";" -}}
+    {{- $nodesList | keyMap "cstorNodePoolList" .ListItems | noop -}}
+    {{end}}
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -118,10 +124,11 @@ data:
     apiVersion: openebs.io/v1alpha1
     kind: CStorPool
     metadata:
-      name: {{.Storagepool.owner}}-{{randAlphaNum 4 |lower }}
+      name: {{.Storagepool.owner}}-{{randAlphaNum 4 |lower }}-{{eq .TaskResult.getspcinfo.type "disk"}}
       labels:
         openebs.io/storagepoolclaim: {{.Storagepool.owner}}
         kubernetes.io/hostname: {{ .ListItems.currentRepeatResource }}
+        testlabel : {{.TaskResult.getspcinfo.type}}
     spec:
       disks:
         diskList: {{ pluck .ListItems.currentRepeatResource .ListItems.cstorNodePoolList.nodes }}
