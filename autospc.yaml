@@ -1,0 +1,17 @@
+---
+apiVersion: openebs.io/v1alpha1
+kind: StoragePoolClaim
+metadata:
+  name: pool1
+  annotations:
+    cas.openebs.io/create-pool-template: cstor-pool-create-default-0.7.0
+    cas.openebs.io/delete-pool-template: cstor-pool-delete-default-0.7.0
+spec:
+  name: pool1
+  type: disk
+  maxPools: 3
+  minPools: 3
+  poolSpec:
+    poolType: striped
+    cacheFile: /tmp/pool1.cache
+    overProvisioning: false
