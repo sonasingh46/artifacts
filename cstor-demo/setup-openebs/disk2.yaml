@@ -1,0 +1,13 @@
+apiVersion: openebs.io/v1alpha1
+kind: Disk
+metadata:
+  labels:
+    kubernetes.io/hostname: gke-ashu-cluster-default-pool-9a73c28c-vl1w 
+  name: disk-2
+spec:
+  devlinks:
+  - kind: by-id
+    links:
+    - /tmp/cstor-sparse.img
+status:
+  state: Active

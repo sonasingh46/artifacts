@@ -1,0 +1,15 @@
+apiVersion: openebs.io/v1alpha1
+kind: Disk
+  metadata:
+    name: sparsef594eb00eecf63247f655aaf524bd46b
+  spec:
+    capacity:
+      logicalSectorSize: 0
+      storage: 1073741824
+    details:
+      firmwareRevision: ""
+      model: ""
+      serial: ""
+      spcVersion: ""
+      vendor: ""
+    path: /var/openebs/ndm-sparse.img

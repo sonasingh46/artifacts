@@ -1,0 +1,32 @@
+SINGLE CONTAINER POD WITHOUT ANY CONTROLLER
+
+
+1.When a pod yaml is applied, following happens:
+
+  1. Default-Scheduler assigns the pod to a node.
+  2. Kubelet mounts volume for the pod.
+  3. Kubelet pull the container image.
+  4. Kubelet create and run the container.
+
+2.If you restart the container using docker daemon nothing will happen.
+  Meaning no change in RV and no change in UID of POD.
+
+3. If stop the container using docker daemon, the RV of POD will change.
+   Additionally, following will happen:
+
+   1. Scheduler will NOT schedule the pod again.
+   2. Kubelet will NOT remount the volume.
+   3. A new container will be created and the old one garbage collected. This is the fundamental approach of Kubernetes.
+
+Verify following:
+
+1.Pods do not, by themselves, self-heal. If a Pod is scheduled to a Node that fails,
+  or if the scheduling operation itself fails, the Pod is deleted; likewise, a Pod
+  won’t survive an eviction due to a lack of resources or Node maintenance.
+
+2.Force deletions can be potentially dangerous for some pods and should be performed with caution.Why ?
+
+Ans:Force deletions can be potentially dangereous sometimes as the processes must be in middle of doing
+    some work (e.g. R/W operation on disk etc) and the state can be inconsitent.
+    Grace period will ensure the process is not taking any further requests and complete whatever is on the
+    plate.

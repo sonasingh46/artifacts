@@ -1,0 +1,17 @@
+---
+apiVersion: openebs.io/v1alpha1
+kind: StoragePoolClaim
+metadata:
+  name: sparsepool1
+  annotations:
+    cas.openebs.io/create-pool-template: cstor-pool-create-default-0.7.0
+    cas.openebs.io/delete-pool-template: cstor-pool-delete-default-0.7.0
+spec:
+  name: sparsepool1
+  type: sparse
+  maxPools: 3
+  minPools: 3
+  poolSpec:
+    poolType: striped
+    cacheFile: /var/openebs/pool1.cache
+    overProvisioning: false
