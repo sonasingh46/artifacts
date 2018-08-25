@@ -1,0 +1,21 @@
+---
+apiVersion: openebs.io/v1alpha1
+kind: StoragePoolClaim
+metadata:
+  name: sparse-claim-manual
+  annotations:
+    cas.openebs.io/create-pool-template: cstor-pool-create-default-0.7.0
+    cas.openebs.io/delete-pool-template: cstor-pool-delete-default-0.7.0
+spec:
+  name: sparse_claim_manual
+  type: sparse
+  maxPools: 3
+  poolSpec:
+    poolType: striped
+    cacheFile: /tmp/sparse_claim_manual.cache
+    overProvisioning: false
+  disks:
+    diskList:
+    - sparse-15d8ddcee519fd6fd694035a2524e4d5
+    - sparse-924ebb4c28d23f526eeac1cead2ec26c
+    - sparse-c2b522d74194af029d2f2e3fae82095d

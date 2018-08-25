@@ -1,0 +1,21 @@
+---
+apiVersion: openebs.io/v1alpha1
+kind: StoragePoolClaim
+metadata:
+  name: disk-claim-manual
+  annotations:
+    cas.openebs.io/create-pool-template: cstor-pool-create-default-0.7.0
+    cas.openebs.io/delete-pool-template: cstor-pool-delete-default-0.7.0
+spec:
+  name: disk-claim-manual
+  type: disk
+  maxPools: 3
+  poolSpec:
+    poolType: striped
+    cacheFile: /tmp/disk-claim-manual.cache
+    overProvisioning: false
+  disks:
+    diskList:
+    - disk-2709a1cba9cea9407b92bc1f7d1a1bde
+    - disk-427145375f85e8a488eeb8bbfae45118
+    - disk-26ac8d634b31ba497a9fa72ae57d6a24
