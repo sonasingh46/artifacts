@@ -9,7 +9,10 @@ The various tests that can be performed are:
 **NOTE:** The script assumes for a pool count of 3. If you want to test for pool count other than 3 you need do a little change in the script.
 
 **COMMAND:**
-$./deploy-percona.sh <spc-yaml-path> <percona-pvc-sc-yaml-path> <percona-deployment-yaml-path>
+```
+$ ./deploy-percona.sh <spc-yaml-path> <percona-pvc-sc-yaml-path> <percona-deployment-yaml-path>
+```
+
 The script expects 3 arguments only else it will throw error.
 ```spc-yaml-path``` is the storagepoolclaim yaml path which could be for either manual or automated provisioning.
 ```percona-pvc-sc-yaml-path``` is the yaml path which will have percona pvc and sc yaml in the same file.
