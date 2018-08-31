@@ -3,9 +3,6 @@ apiVersion: openebs.io/v1alpha1
 kind: StoragePoolClaim
 metadata:
   name: disk-claim-auto
-  annotations:
-    cas.openebs.io/create-pool-template: cstor-pool-create-default-0.7.0
-    cas.openebs.io/delete-pool-template: cstor-pool-delete-default-0.7.0
 spec:
   name: disk-claim-auto
   type: disk

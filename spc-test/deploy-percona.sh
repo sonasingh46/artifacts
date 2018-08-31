@@ -49,7 +49,7 @@ echo "PVC namespace is" $pvcNamesapce
 
 maxRetry=10
 expectedPVCStatus="Bound"
-until [ "$pvcstatus" == "$expectedPVCStatus=" ]
+until [ "$pvcstatus" == "$expectedPVCStatus" ]
 do
     if [ $maxRetry == 0 ];then
         break
