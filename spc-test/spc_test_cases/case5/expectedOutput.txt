@@ -1,0 +1,6 @@
+testCase:positive
+resourceCount:3
+poolStatus:2
+generateClusterEnv:true
+commands:kubectl drain gke-cstor-it-default-pool-4fbff4f8-wt09 --ignore-daemonsets
+clearPoolResources:false

@@ -1,0 +1,3 @@
+testCase:positive
+resourceCount:3
+poolStatus:3

@@ -1,0 +1,7 @@
+testCase:negative
+resourceCount:0
+poolStatus:0
+generateClusterEnv:true
+commands:kubectl delete disk $(kubectl get disk | grep disk | awk 'NR==1,NR==2{print$1}')
+clearPoolResources:false
+
