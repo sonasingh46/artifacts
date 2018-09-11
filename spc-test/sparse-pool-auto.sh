@@ -11,7 +11,7 @@ if [ "$clusterEnv" == "true" ];then
 getCommandTemp=`cat $2 | awk 'NR==5 {print}'`
 getCommand=${getCommandTemp##*:}
 echo $getCommand
-$getCommand
+eval $getCommand
 fi
 
 resetClusterEnvTemp=`cat $2 | awk 'NR==7 {print}'`
@@ -21,7 +21,7 @@ getCommandTemp=`cat $2 | awk 'NR==8 {print}'`
 echo $getCommandTemp
 getCommand=${getCommandTemp##*:}
 echo $getCommand
-$getCommand
+eval $getCommand
 fi
 
 applySpcTemp=`cat $2 | awk 'NR==9 {print}'`

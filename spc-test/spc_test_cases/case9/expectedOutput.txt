@@ -2,6 +2,6 @@ testCase:negative
 resourceCount:0
 poolStatus:0
 generateClusterEnv:true
-commands:kubectl delete disk $(kubectl get disk | grep disk | awk 'NR==1,NR==2{print$1}')
+commands:kubectl delete disk sparse-4b488677f76c94d681870379168a677a sparse-b224d198268595fbf5489c5dade4e51b
 clearPoolResources:false
 

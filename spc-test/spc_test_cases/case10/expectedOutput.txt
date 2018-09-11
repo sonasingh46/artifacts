@@ -4,7 +4,7 @@ poolStatus:1
 generateClusterEnv:false
 commands:
 clearPoolResources:true
-resetCluster:true
-commands:kubectl delete pod -l app=node-disk-manager -n openebs
+resetCluster:false
+commands:kubectl delete disk --all;kubectl delete pod -l app=node-disk-manager -n openebs
 applySPC:true
 
