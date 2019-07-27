@@ -1,0 +1,22 @@
+apiVersion: openebs.io/v1alpha1
+kind: CStorPoolCluster
+metadata:
+  name: cspc-mirror
+  namespace: openebs
+spec:
+  pools:
+  - nodeSelector:
+      kubernetes.io/hostname: "gke-cstor-poolops-default-pool-ef617477-t7md"
+    raidGroups:
+    - type: "mirror"
+      isWriteCache: false
+      isSpare: false
+      isReadCache: false
+      blockDevices:
+      - blockDeviceName: "sparse-1d8b3b012fd15d085bff7a6931299d6c"
+      - blockDeviceName: "sparse-3a4dceaf01f6cba9325a737d700c1a1f"
+    poolConfig:
+      cacheFile: ""
+      defaultRaidGroupType: "mirror"
+      overProvisioning: false
+      compression: "off"
