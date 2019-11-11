@@ -6,14 +6,44 @@ metadata:
 spec:
   pools:
   - nodeSelector:
-      kubernetes.io/hostname: "gke-cstor-poolops-default-pool-ef617477-2nkm"
+      kubernetes.io/hostname: "gke-cstor-demo-default-pool-3385ab41-l3q3"
     raidGroups:
     - type: "stripe"
       isWriteCache: false
       isSpare: false
       isReadCache: false
       blockDevices:
-      - blockDeviceName: "sparse-03c179a6040c74ecdc4ec6f1a9b0d45a"
+      - blockDeviceName: "sparse-6ef659b310237792a3537a0ff37cbc54"
+    poolConfig:
+      cacheFile: ""
+      defaultRaidGroupType: "stripe"
+      overProvisioning: false
+      compression: "off"
+
+  - nodeSelector:
+      kubernetes.io/hostname: "gke-cstor-demo-default-pool-3385ab41-tgm3"
+    raidGroups:
+    - type: "stripe"
+      isWriteCache: false
+      isSpare: false
+      isReadCache: false
+      blockDevices:
+      - blockDeviceName: "sparse-b382ad4ee60944e30142540993f36870"
+    poolConfig:
+      cacheFile: ""
+      defaultRaidGroupType: "stripe"
+      overProvisioning: false
+      compression: "off"
+
+  - nodeSelector:
+      kubernetes.io/hostname: "gke-cstor-demo-default-pool-3385ab41-j5xp"
+    raidGroups:
+    - type: "stripe"
+      isWriteCache: false
+      isSpare: false
+      isReadCache: false
+      blockDevices:
+      - blockDeviceName: "sparse-f2232619a322bd61dc64fb0de0d3903b"
     poolConfig:
       cacheFile: ""
       defaultRaidGroupType: "stripe"
