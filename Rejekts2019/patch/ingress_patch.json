@@ -1,0 +1,5 @@
+[
+  {"op": "replace", "path": "/spec/rules/0/host", "value": "director.mayadata.io"},
+  {"op": "replace", "path": "/spec/tls/0/hosts", "value": "director.mayadata.io"},
+  {"op": "replace", "path": "/spec/rules/0/http/paths/0/backend/servicePort", "value": 8080}
+]

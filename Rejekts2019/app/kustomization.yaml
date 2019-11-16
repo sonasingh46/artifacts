@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: dev
+commonLabels:
+  env: staging 
+namePrefix: foo-
+images:
+  - name: quay.io/openebs/cspc-operator
+    newName: quay.io/openebs/cspc-operator-debug 
+    newTag: inject
+resources:
+- cspc-operator.yaml
+- svc.yaml
+- service-account.yaml
+- crd.yaml

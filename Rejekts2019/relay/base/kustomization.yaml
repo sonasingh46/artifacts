@@ -1,0 +1,3 @@
+resources:
+- cspc-operator.yaml
+- service-account.yaml

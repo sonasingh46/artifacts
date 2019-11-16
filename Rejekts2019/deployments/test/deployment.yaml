@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+  namespace: dev
+  labels:
+    app: web-app
+    env: dev
+spec:
+  selector:
+    matchLabels:
+      app: web-app
+      env: dev
+  template:
+    metadata:
+      labels:
+        app: web-app
+        env: dev
+    spec:
+      containers:
+      - name: web-app
+        image: sonasingh46/node-web-app:latest
+

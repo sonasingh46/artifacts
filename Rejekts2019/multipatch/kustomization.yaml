@@ -1,0 +1,8 @@
+resources:
+- grafana.yaml
+- cspc-operator.yaml
+patches:
+- path: patch.yaml
+  target:
+    kind: Deployment
+    # labelSelector: app=hello

@@ -1,0 +1,85 @@
+#grafana-deployment
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: maya-grafana
+  name: maya-grafana
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: maya-grafana
+    spec:
+      securityContext:
+        fsGroup: 107
+      containers:
+      - image: grafana/grafana:4.6.3
+        name: master-grafana
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        env:
+          - name: GF_AUTH_BASIC_ENABLED
+            value: "true"
+          - name: GF_AUTH_ANONYMOUS_ENABLED
+            value: "false"
+        volumeMounts:
+          - name: config-loader
+            mountPath: "/usr/share/grafana/public/app/plugins/panel/text/loader.js"
+            subPath: loader.js
+          - name: config-svg
+            mountPath: "/usr/share/grafana/public/img/grafana_icon.svg"
+            subPath: grafana_icon.svg
+          - name: config-volume
+            mountPath: "/etc/grafana"
+          - name: maya-grafana-store
+            mountPath: /var/lib/grafana
+            # /var holds grafana db and plugins,
+        ### Commenting below livenessProbe resource as it is causing issues behind ingress-proxy.
+        #livenessProbe:
+        #  httpGet:
+        #    path: /
+        #    port: 3000
+        #  initialDelaySeconds: 30
+        #  timeoutSeconds: 1
+      volumes:
+        - name: config-loader
+          configMap:
+            name: maya-grafana-cfgmap-loader
+        - name: config-volume
+          configMap:
+            name: maya-grafana-cfgmap
+        - name: config-svg
+          configMap:
+            name: grafana-cfgmap-svg
+        - name: maya-grafana-store
+          persistentVolumeClaim:
+            claimName: grafana-claim
+---
+# grafana-service
+apiVersion: v1
+kind: Service
+metadata:
+  name: maya-grafana-service
+spec:
+  type: NodePort
+  ports:
+  - port: 3000
+  selector:
+    app: maya-grafana
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: grafana-claim
+  annotations:
+    volume.beta.kubernetes.io/storage-class: openebs-grafana
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 40G
