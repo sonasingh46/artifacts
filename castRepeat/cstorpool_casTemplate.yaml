@@ -8,8 +8,10 @@ spec:
     value: "3G"
   - name: maxPool
     value: "3"
+  taskNamespace: default
   run:
-    taskNamespace: default
     tasks:
-    - task: cstor-pool-create-put-cr-0.6.0
-      id: vcstorpool
+    - cstor-pool-create-list-disk-0.6.0
+    - cstor-pool-create-list-node-0.6.0
+    - cstor-pool-create-put-cr-0.6.0
+    - cstor-pool-create-put-deployment-0.6.0
